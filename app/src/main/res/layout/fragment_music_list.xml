@@ -1,0 +1,72 @@
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <!--
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guidlineTop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="@dimen/guidlineTop" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/toolbarHeight"
+                    android:background="@color/colorPrimary"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/textTitle"
+                    style="@style/textTitle"
+                    android:text="@string/app_name"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/guidlineTop" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/margin_24"
+                    android:src="@drawable/ic_tune"
+                    app:layout_constraintBottom_toBottomOf="@id/textTitle"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/textTitle"
+                    app:tint="@color/white"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    android:id="@+id/textListAlbum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_24"
+                    android:layout_marginTop="@dimen/margin_24"
+                    android:drawablePadding="@dimen/paddingStandart"
+                    android:text="@string/list_of_all_albums"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_14"
+                    app:drawableEndCompat="@drawable/ic_layers"
+                    app:drawableTint="@color/white"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/textTitle"
+                    tools:ignore="SpUsage" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/viewPagerHeight"
+                    android:layout_marginTop="@dimen/marginStandart"
+                    android:clipToPadding="false"
+                    android:overScrollMode="never"
+                    app:layout_constraintTop_toBottomOf="@id/textListAlbum" />
+        -->
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerMusicList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

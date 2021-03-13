@@ -1,0 +1,164 @@
+<layout>
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="controller"
+            type="uz.abbos_dilmurodjonov.musicplayer.fragments.player.PlayerUIController" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrierNavigation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="imagePrev,imageNext,imagePause,imagePlay" />
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrierDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:barrierDirection="top"
+            app:constraint_referenced_ids="textMaxDuration,textValueDuration" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineBottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_end="@dimen/margin_40" />
+
+        <ImageView
+            android:id="@+id/imagePrev"
+            style="@style/imageNavigation"
+            android:onClick="@{()->controller.onPrevClicked()}"
+            android:src="@drawable/ic_prev"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintEnd_toStartOf="@id/imagePause"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imageNext"
+            style="@style/imageNavigation"
+            android:onClick="@{()->controller.onNextClicked()}"
+            android:src="@drawable/ic_next"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/imagePause"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imagePlay"
+            style="@style/imageNavigation"
+            android:onClick="@{()->controller.onPlayClicked()}"
+            android:src="@drawable/ic_play"
+            android:visibility="@{controller.isPlaying ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/imagePause"
+            style="@style/imageNavigation"
+            android:onClick="@{()->controller.onPauseClicked()}"
+            android:src="@drawable/ic_pause"
+            android:visibility="@{controller.isPlaying ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/guidelineBottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_24"
+            android:progressBackgroundTint="@color/colorPrimary"
+            android:progressTint="@color/colorPrimary"
+            android:thumbTint="@color/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="@id/barrierNavigation" />
+
+        <TextView
+            android:id="@+id/textValueDuration"
+            style="@style/textMusicDuration"
+            android:layout_marginBottom="@dimen/marginHalf"
+            android:text="@{controller.currentPosition}"
+            app:layout_constraintBottom_toTopOf="@id/seekBar"
+            app:layout_constraintStart_toStartOf="@id/seekBar"
+            tools:text="00:00" />
+
+        <TextView
+            android:id="@+id/textMaxDuration"
+            style="@style/textMusicDuration"
+            android:layout_marginBottom="@dimen/marginHalf"
+            android:text="@{controller.maxDuration}"
+            app:layout_constraintBottom_toTopOf="@id/seekBar"
+            app:layout_constraintEnd_toEndOf="@id/seekBar"
+            tools:text="03:24" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardViewDecor"
+            android:layout_width="@dimen/cardPlayerSize"
+            android:layout_height="@dimen/cardPlayerSize"
+            android:backgroundTint="@color/colorPrimary"
+            android:outlineAmbientShadowColor="@color/colorPrimary"
+            android:outlineSpotShadowColor="@color/colorPrimary"
+            app:cardCornerRadius="@dimen/cardPlayerRadius"
+            app:layout_constraintBottom_toTopOf="@id/barrierDuration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3"
+            tools:ignore="UnusedAttribute">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="@dimen/padding_32"
+                android:src="@drawable/ic_music"
+                app:tint="@color/white"
+                tools:ignore="ContentDescription" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/textMusicName"
+            style="@style/textMusicTitle"
+            android:layout_marginHorizontal="@dimen/margin_24"
+            android:gravity="center"
+            android:text="@{controller.title}"
+            app:layout_constraintBottom_toBottomOf="@id/barrierDuration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardViewDecor"
+            app:layout_constraintVertical_bias="0.2"
+            tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry" />
+
+        <TextView
+            android:id="@+id/textMusicDesc"
+            style="@style/textMusicDesc"
+            android:layout_marginHorizontal="@dimen/margin_24"
+            android:layout_marginTop="@dimen/marginStandart"
+            android:gravity="center"
+            android:text="@{controller.artist}"
+            app:layout_constraintBottom_toBottomOf="@id/barrierDuration"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textMusicName"
+            app:layout_constraintVertical_bias="0"
+            tools:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

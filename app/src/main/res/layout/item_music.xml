@@ -1,0 +1,57 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="controller"
+            type="uz.abbos_dilmurodjonov.musicplayer.fragments.main.ItemUIController" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{()->controller.selectMusic()}"
+        android:paddingHorizontal="@dimen/padding_24"
+        android:paddingTop="@dimen/paddingStandart"
+        tools:ignore="UnusedAttribute">
+
+        <TextView
+            android:id="@+id/textMusicName"
+            style="@style/textMusicTitle"
+            android:text="@{controller.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textMusicDesc"
+            style="@style/textMusicDesc"
+            android:ellipsize="marquee"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:singleLine="true"
+            android:text="@{controller.artist}"
+            app:layout_constraintEnd_toStartOf="@id/textMusicDuration"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textMusicName" />
+
+        <TextView
+            android:id="@+id/textMusicDuration"
+            style="@style/textMusicDuration"
+            android:layout_marginTop="@dimen/margin_4"
+            android:text="@{controller.duration}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textMusicName"
+            tools:ignore="SpUsage" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="@dimen/marginStandart"
+            android:alpha="0.2"
+            android:background="@color/textLight"
+            app:layout_constraintTop_toBottomOf="@id/textMusicDesc" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
